@@ -2,6 +2,8 @@ window.addEventListener("load", () => {
   const canvas = canvas1;
   const ctx = canvas.getContext("2d");
 
+  let linesDistance = 500;
+
   canvasPosition = canvas.getBoundingClientRect();
 
   canvas.height = canvasPosition.height;
@@ -92,6 +94,12 @@ window.addEventListener("load", () => {
 
       canvas.height = canvasPosition.height;
       canvas.width = canvasPosition.width;
+      input1.max = canvasPosition.width;
+    });
+
+    input1.max = canvasPosition.width;
+    input1.addEventListener("change", (e) => {
+      linesDistance = e.target.value;
     });
   }
 
@@ -107,7 +115,7 @@ window.addEventListener("load", () => {
       for (let b = a; b < dots.length; b++) {
         const distance = getDistance(dots[a], dots[b]);
 
-        if (distance < canvas.height / 7) {
+        if (distance < linesDistance) {
           ctx.strokeStyle = `rgba(150,0,255,${(1 * 100) / distance})`;
           ctx.beginPath();
           ctx.moveTo(dots[a].x, dots[a].y);
