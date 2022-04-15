@@ -3,13 +3,13 @@ window.addEventListener("load", () => {
   const ctx = canvas.getContext("2d");
 
   let linesDistance = 500;
+  let particleCount = 150;
 
   canvasPosition = canvas.getBoundingClientRect();
 
   canvas.height = canvasPosition.height;
   canvas.width = canvasPosition.width;
 
-  const numberOfDots = 150;
   const dots = [];
 
   const mouse = {
@@ -71,7 +71,7 @@ window.addEventListener("load", () => {
   function init() {
     dots.splice(0, dots.length);
 
-    for (let i = 0; i < numberOfDots; i++) {
+    for (let i = 0; i < particleCount; i++) {
       dots.push(
         new Dot(Math.random() * canvas.width, Math.random() * canvas.height)
       );
@@ -100,6 +100,26 @@ window.addEventListener("load", () => {
     input1.max = canvasPosition.width;
     input1.addEventListener("change", (e) => {
       linesDistance = e.target.value;
+    });
+
+    count.innerText = `Particle count: ${particleCount}`;
+    input2.value = particleCount;
+    input2.addEventListener("change", (e) => {
+      const newValue = e.target.value;
+      if (newValue > particleCount) {
+        for (let i = 0; i < newValue - particleCount; i++) {
+          dots.push(
+            new Dot(Math.random() * canvas.width, Math.random() * canvas.height)
+          );
+        }
+      } else {
+        if (dots.length > 0) {
+          dots.splice(0, particleCount - newValue);
+        }
+      }
+
+      particleCount = newValue;
+      count.innerText = `Particle count: ${particleCount}`;
     });
   }
 
