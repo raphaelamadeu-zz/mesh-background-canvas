@@ -1,0 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+canvas {
+  width: 100vw;
+  height: 100vh;
+  background: whitesmoke;
+  box-shadow: inset 5px 5px 500px rgba(0,0,0,.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
