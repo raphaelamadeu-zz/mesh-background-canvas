@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
     x: 0,
     y: 0,
     size: 100,
-    onScreen: false,
+    onScreen: false
   };
 
   class Dot {
@@ -114,7 +114,7 @@ window.addEventListener("load", () => {
         }
       } else {
         if (dots.length > 0) {
-          dots.splice(0, particleCount - newValue);
+          dots.splice(0, dots.length - newValue);
         }
       }
 
@@ -135,8 +135,10 @@ window.addEventListener("load", () => {
       for (let b = a; b < dots.length; b++) {
         const distance = getDistance(dots[a], dots[b]);
 
+        1 - distance / linesDistance;
+
         if (distance < linesDistance) {
-          ctx.strokeStyle = `rgba(150,0,255,${(1 * 100) / distance})`;
+          ctx.strokeStyle = `rgba(150,0,255,${1 - distance / linesDistance})`;
           ctx.beginPath();
           ctx.moveTo(dots[a].x, dots[a].y);
           ctx.lineTo(dots[b].x, dots[b].y);
